@@ -20,6 +20,8 @@ import { AgentFindUniqueArgs } from "./AgentFindUniqueArgs";
 import { CreateAgentArgs } from "./CreateAgentArgs";
 import { UpdateAgentArgs } from "./UpdateAgentArgs";
 import { DeleteAgentArgs } from "./DeleteAgentArgs";
+import { OpenAiPromptDto } from "../OpenAiPromptDto";
+import { OpenAiResponseDto } from "../OpenAiResponseDto";
 import { AgentService } from "../agent.service";
 @graphql.Resolver(() => Agent)
 export class AgentResolverBase {
@@ -91,5 +93,13 @@ export class AgentResolverBase {
       }
       throw error;
     }
+  }
+
+  @graphql.Mutation(() => OpenAiResponseDto)
+  async SendPrompt(
+    @graphql.Args()
+    args: OpenAiPromptDto
+  ): Promise<OpenAiResponseDto> {
+    return this.service.SendPrompt(args);
   }
 }

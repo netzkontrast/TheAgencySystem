@@ -11,6 +11,8 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { PrismaService } from "../../prisma/prisma.service";
 import { Prisma, Agent as PrismaAgent } from "@prisma/client";
+import { OpenAiPromptDto } from "../OpenAiPromptDto";
+import { OpenAiResponseDto } from "../OpenAiResponseDto";
 
 export class AgentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -33,5 +35,8 @@ export class AgentServiceBase {
   }
   async deleteAgent(args: Prisma.AgentDeleteArgs): Promise<PrismaAgent> {
     return this.prisma.agent.delete(args);
+  }
+  async SendPrompt(args: OpenAiPromptDto): Promise<OpenAiResponseDto> {
+    throw new Error("Not implemented");
   }
 }

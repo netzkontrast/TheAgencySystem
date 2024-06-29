@@ -22,6 +22,8 @@ import { Agent } from "./Agent";
 import { AgentFindManyArgs } from "./AgentFindManyArgs";
 import { AgentWhereUniqueInput } from "./AgentWhereUniqueInput";
 import { AgentUpdateInput } from "./AgentUpdateInput";
+import { OpenAiPromptDto } from "../OpenAiPromptDto";
+import { OpenAiResponseDto } from "../OpenAiResponseDto";
 
 export class AgentControllerBase {
   constructor(protected readonly service: AgentService) {}
@@ -145,5 +147,22 @@ export class AgentControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.Post("/sendPrompt")
+  @swagger.ApiOkResponse({
+    type: OpenAiResponseDto,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async SendPrompt(
+    @common.Body()
+    body: OpenAiPromptDto
+  ): Promise<OpenAiResponseDto> {
+    return this.service.SendPrompt(body);
   }
 }
