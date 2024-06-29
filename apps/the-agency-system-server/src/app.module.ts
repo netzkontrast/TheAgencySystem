@@ -3,6 +3,7 @@ import { AiAgentModule } from "./aiAgent/aiAgent.module";
 import { JournalEntryModule } from "./journalEntry/journalEntry.module";
 import { AiTaskModule } from "./aiTask/aiTask.module";
 import { UserModule } from "./user/user.module";
+import { AgentModule } from "./agent/agent.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -19,6 +20,7 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
     JournalEntryModule,
     AiTaskModule,
     UserModule,
+    AgentModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

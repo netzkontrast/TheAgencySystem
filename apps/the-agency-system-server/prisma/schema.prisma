@@ -55,6 +55,16 @@ model User {
   username       String         @unique
 }
 
+model Agent {
+  createdAt    DateTime @default(now())
+  email        String?
+  id           String   @id @default(cuid())
+  name         String   @unique
+  role         String
+  systemprompt String
+  updatedAt    DateTime @updatedAt
+}
+
 enum EnumAiTaskStatus {
   Option1
 }
